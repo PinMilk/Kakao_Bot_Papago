@@ -1,5 +1,5 @@
 # Kakao_Bot_Papago - 비공식 파파고 라이브러리.
-- Note: It can stop working anytime.
+- Note: 이는 언제라도 작동을 멈출 수 있습니다.
 - [Korean Reference](./README.ko.md)
 
 ## 예시
@@ -17,7 +17,7 @@ function response(room, msg, sender, igc, replier) {
 | `source` | string | 시작 언어 | Y |
 | `target` | string | 목적 언어 | Y |
 | `text` | string | 번역할 문장 | Y |
-| `verbose` | boolean | JSON으로 출력(Default: false) | N |
+| `verbose` | boolean | JSON으로 출력(기본값: false) | N |
 ## 언어 코드
 | 코드 | 언어 |
 |----|----|
