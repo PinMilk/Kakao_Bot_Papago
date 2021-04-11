@@ -17,6 +17,7 @@ function response(room, msg, sender, igc, replier) {
 | `source` | string | origin language code | Y |
 | `target` | string | target language code | Y |
 | `text` | string | string to be translated | Y |
+| `honorfic` | boolean | weather to translate to honorfic message or not | Y |
 | `verbose` | boolean | return by json string(Default: false) | N |
 ## Language Code
 | Code | Language |
