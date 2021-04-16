@@ -4,21 +4,33 @@
 
 ## Example
 ```javascript
-const { Translator } = require('translator');
+const { Translator } = require('../lib/translator');
 
 function response(room, msg, sender, igc, replier) {
-    replier.reply(new Translator().translate('en', 'ko', msg)); // Only result
-    replier.reply(new Translator().translate('en', 'ko', msg, true)); // Result by raw json
+    replier.reply(new Translator().translate('detect', 'ko', msg)); // Only result
+    replier.reply(new Translator().translate('en', 'ko', msg, {
+        verbose: true
+    })); // Result by raw json
+    replier.reply(new Translator().translate('en', 'ko', msg, {
+        honorfic: false
+    })); // No honorfic
 }
+
 ```
+## How to use
+`lib` Use files in lib directory. You can write code like example.
 ## Parameter
-| value | type | Description | Required |
+| Name | Type | Description | Required |
 |----|----|----|----|
 | `source` | string | origin language code | Y |
 | `target` | string | target language code | Y |
 | `text` | string | string to be translated | Y |
-| `honorfic` | boolean | weather to translate to honorfic message or not | Y |
-| `verbose` | boolean | return by json string(Default: false) | N |
+| `config` | string | string to be translated | N |
+## Config
+| Property | Type | Description | Default |
+|----|----|----|----|
+| `honorfic` | boolean | weather to translate to honorfic message or not | true |
+| `verbose` | boolean | return by json string | false |
 ## Language Code
 | Code | Language |
 |----|----|

@@ -4,21 +4,31 @@
 
 ## 예시
 ```javascript
-const { Translator } = require('translator');
+const { Translator } = require('../lib/translator');
 
 function response(room, msg, sender, igc, replier) {
-    replier.reply(new Translator().translate('en', 'ko', msg)); // 번역 결과만 출력.
-    replier.reply(new Translator().translate('en', 'ko', msg, true)); // Raw json으로 출력.
+    replier.reply(new Translator().translate('detect', 'ko', msg)); // Only result
+    replier.reply(new Translator().translate('en', 'ko', msg, {
+        verbose: true
+    })); // Result by raw json
+    replier.reply(new Translator().translate('en', 'ko', msg, {
+        honorfic: false
+    })); // No honorfic
 }
+
 ```
 ## Parameter
-| 값 | 타입 | 설명 | 필수 여부 |
+| 이름 | 타입 | 설명 | 필수 여부 |
 |----|----|----|----|
 | `source` | string | 시작 언어 | Y |
 | `target` | string | 목적 언어 | Y |
 | `text` | string | 번역할 문장 | Y |
-| `text` | string | 높임말 여부 | Y |
-| `verbose` | boolean | JSON으로 출력(기본값: false) | N |
+| `config` | string | string to be translated | N |
+## Config
+| 프로퍼티 | 타입 | 설명 | 기본값 |
+|----|----|----|----|
+| `honorfic` | string | 높임말 여부 | true |
+| `verbose` | boolean | JSON으로 출력 | false |
 ## 언어 코드
 | 코드 | 언어 |
 |----|----|
