@@ -17,6 +17,7 @@ function response(room, msg, sender, igc, replier) {
 | `source` | string | 시작 언어 | Y |
 | `target` | string | 목적 언어 | Y |
 | `text` | string | 번역할 문장 | Y |
+| `text` | string | 높임말 여부 | Y |
 | `verbose` | boolean | JSON으로 출력(기본값: false) | N |
 ## 언어 코드
 | 코드 | 언어 |
