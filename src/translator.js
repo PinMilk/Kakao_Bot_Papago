@@ -4,20 +4,20 @@
  * 
  * @typedef {object} TranslateConfig
  * @property {boolean} honorfic 경어 사용 여부
- * @property {boolean} verbose raw json으로 반환할 지 여부
+ * @property {boolean} verbose Raw JSON 반환 여부
  */
 
 const { Authenticator } = require('./login/auth')
 exports.Translator = /** @class */ (function () {
     function Translator() {
         this.time = Date.now()
-        this.UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'
-        this.C_TYPE = 'application/x-www-form-urlencoded; charset=UTF-8'
+        this.UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36'     // User-Agent
+        this.C_TYPE = 'application/x-www-form-urlencoded; charset=UTF-8'                                                                        // Content-Type
         this.path = {
-            parentURL: 'https://papago.naver.com/apis',
+            parentURL: 'https://papago.naver.com/apis',                                                                                         // 요청 URL
             childURL: [
-                '/n2mt/translate',
-                '/langs/dect'
+                '/n2mt/translate',                                                                                                              // 번역 요청 Child URL
+                '/langs/dect'                                                                                                                   // 언어 감지 요청 Child URL
             ]
         }
         return this
@@ -28,8 +28,7 @@ exports.Translator = /** @class */ (function () {
      * @private
      */
     Translator.prototype.genUUID = function () {
-        const time = this.time
-        const uuid = Authenticator.genUUID(time)
+        const uuid = Authenticator.genUUID()
         return uuid
     }
     /**
@@ -73,7 +72,6 @@ exports.Translator = /** @class */ (function () {
             .data('locale', 'ko')
             .data('dict', 'true')
             .data('dictDisplay', '30')
-            // 경어
             .data('honorific', honorfic)
             .data('instant', 'false')
             .data('paging', 'false')
@@ -89,7 +87,7 @@ exports.Translator = /** @class */ (function () {
             Log.d('이 레포(https://github.com/PinMilk/Kakao_Bot_Papago)에 한국어로 이슈를 만들어 주세요.')
             throw new ReferenceError('Invaild authorization. Read a log.')
         }
-        if (response.statusCode() !== 200) throw new Error('Connection error')
+        if (response.statusCode() !== 200) throw new Error('Connection error: ' + response.statusCode())
         const body = JSON.parse(response.parse().text())
         const result = (verbose ? body : body.translatedText)
         return result
@@ -132,9 +130,8 @@ exports.Translator = /** @class */ (function () {
             .ignoreContentType(true)
         const response = connection.execute()
         if (response.statusCode() === 403) {
-            Log.d('이 레포(https://github.com/PinMilk/Kakao_Bot_Papago)에 한국어로 이슈를 만들어 주세요.')
-            throw new ReferenceError('Invaild authorization. Read a log')
-        } else if (response.statusCode() !== 200) throw new Error('Connection error')
+            throw new ReferenceError('Invaild authorization.')
+        } else if (response.statusCode() !== 200) throw new Error('Connection Error: ' + response.statusCode())
         const body = response.parse().text()
         const result = JSON.parse(body).langCode
         return result

@@ -11,14 +11,8 @@ exports.Authenticator = /** @class */ (function () {
      * @param {number} time UNIX 시간(밀리초)
      * @returns {string} UUID
      */
-    Authenticator.genUUID = function(time) {
-        var tower = time
-        var base = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-        var uuid = base.replace(/[xy]/g, function (e) {
-            var chip = (time + 16 * Math.random()) % 16 | 0
-            tower = Math.floor(tower / 16)
-            return (e === 'x' ? chip : 3 & chip | 8).toString()
-        })
+    Authenticator.genUUID = function() {
+        const uuid = java.util.UUID.randomUUID().toString()
         return uuid
     }
     /**
@@ -28,7 +22,7 @@ exports.Authenticator = /** @class */ (function () {
      */
     Authenticator.getHash = function (message) {
         const hash = new HmacMD5()
-            .init('v1.6.3_4f4591fdf3', message)
+            .init('v1.7.0_0d2601d5cf', message)
             .getHash()
         return hash
     }

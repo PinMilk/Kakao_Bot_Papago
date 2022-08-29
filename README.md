@@ -1,10 +1,9 @@
-# Kakao_Bot_Papago - Unofficial papago wrapper.
-- Note: It can stop working anytime.
-- [Korean Reference](./README.ko.md)
+# Kakao_Bot_Papago - 비공식 파파고 라이브러리.
+- Note: 이는 언제라도 작동을 멈출 수 있습니다.
 
-## Example
+## 예시
 ```javascript
-const { Translator } = require('../lib/translator');
+const { Translator } = require('translator');
 
 function response(room, msg, sender, igc, replier) {
     replier.reply(new Translator().translate('detect', 'ko', msg)); // Only result
@@ -17,41 +16,39 @@ function response(room, msg, sender, igc, replier) {
 }
 
 ```
-## How to use
-`lib` Use files in lib directory. You can write code like example.
 ## Parameter
-| Name | Type | Description | Required |
+| 이름 | 타입 | 설명 | 필수 여부 |
 |----|----|----|----|
-| `source` | string | origin language code | Y |
-| `target` | string | target language code | Y |
-| `text` | string | string to be translated | Y |
+| `source` | string | 시작 언어 | Y |
+| `target` | string | 목적 언어 | Y |
+| `text` | string | 번역할 문장 | Y |
 | `config` | string | string to be translated | N |
 ## Config
-| Property | Type | Description | Default |
+| 프로퍼티 | 타입 | 설명 | 기본값 |
 |----|----|----|----|
-| `honorfic` | boolean | weather to translate to honorfic message or not | true |
-| `verbose` | boolean | return by json string | false |
-## Language Code
-| Code | Language |
+| `honorfic` | string | 높임말 여부 | true |
+| `verbose` | boolean | JSON으로 출력 | false |
+## 언어 코드
+| 코드 | 언어 |
 |----|----|
-| `ko` | Korean |
-| `en` | English |
-| `ja` | Japanese |
-| `zh-cn` | Chinese(Simplified) |
-| `zh-tw` | Chinese(Traditional) |
-| `hi` | Hindi |
-| `es` | Spanish |
-| `fr` | French |
-| `de` | German |
-| `pt` | Portuguese |
-| `vi` | Vietnamese |
-| `id` | Indonesian |
-| `fa` | Persian |
-| `ar` | Arabic |
-| `mm` | Myanmar |
-| `th` | Thai |
-| `ru` | Russian |
-| `it` | Italian |
-| `detect` | Auto detect |
+| `ko` | 한국어 |
+| `en` | 영어 |
+| `ja` | 일본어 |
+| `zh-cn` | 중국어(간체) |
+| `zh-tw` | 중국어(번체) |
+| `hi` | 힌디어 |
+| `es` | 에스파냐어 |
+| `fr` | 프랑스어 |
+| `de` | 독일어 |
+| `pt` | 포르투갈어 |
+| `vi` | 베트남어 |
+| `id` | 인도네시아어 |
+| `fa` | 페르시아어 |
+| `ar` | 아랍어 |
+| `mm` | 미얀마어 |
+| `th` | 태국어 |
+| `ru` | 러시아어 |
+| `it` | 이탈리아어 |
+| `detect` | 자동 감지 |
 ## License
-It is following MIT License.
+None
